@@ -3,16 +3,16 @@ services:
   reverseproxy:
     build:
       context: ./udagram-reverseproxy
-    image: reverseproxy
+    image: skandaprasad98/reverseproxy:latest # Specify the full image name with the tag
   backend_user:
     build:
       context: ./udagram-api-user
-    image: udagram-api-user
+    image: skandaprasad98/udagram-api-user:latest # Specify the full image name with the tag
   backend_feed:
     build:
       context: ./udagram-api-feed
-    image: udagram-api-feed
+    image: skandaprasad98/udagram-api-feed:latest # Specify the full image name with the tag
   frontend:
     build:
       context: ./udagram-frontend
-    image: udagram-frontend:local
+    image: skandaprasad98/udagram-frontend:latest # Specify the full image name with the tag
