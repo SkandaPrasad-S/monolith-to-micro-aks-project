@@ -24,9 +24,3 @@ jobs:
             docker push skandaprasad98/udagram-api-feed:latest
             docker push skandaprasad98/udagram-frontend:latest
 
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build-and-push:
-          context: dockerhub-credentials
