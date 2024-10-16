@@ -12,8 +12,6 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: docker23
-      - docker/check
-      - aws-cli/setup
       - run:
           name: Build and push Docker images
           command: |
