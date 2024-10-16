@@ -12,11 +12,10 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: docker23
-      - docker/check
-      - aws-cli/setup
       - run:
           name: Build and push Docker images
           command: |
+            
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker-compose -f docker-compose-build.yaml build --parallel
             docker push skandaprasad98/reverseproxy:latest
