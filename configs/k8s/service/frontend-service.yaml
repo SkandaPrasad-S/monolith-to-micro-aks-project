@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udagram-frontend
+  labels:
+    app: udagram-frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8100
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: udagram-frontend

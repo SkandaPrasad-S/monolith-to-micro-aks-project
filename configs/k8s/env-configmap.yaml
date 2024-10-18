@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-configmap
+data:
+  AWS_BUCKET: "arn:aws:s3:::mono-to-micro"
+  AWS_REGION: "us-east-1"
+  AWS_PROFILE: "default"
+  URL: "http://localhost:8100"
