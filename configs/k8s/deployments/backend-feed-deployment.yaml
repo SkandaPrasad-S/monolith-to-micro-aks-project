@@ -14,6 +14,24 @@ spec:
       labels:
         app: udagram-backend-feed
     spec:
+      initContainers:
+      - name: init-aws-credentials
+        image: busybox
+        command: ['sh', '-c', 'echo "[default]" > /root/.aws/credentials && echo "aws_access_key_id=${AWS_ACCESS_KEY_ID}" >> /root/.aws/credentials && echo "aws_secret_access_key=${AWS_SECRET_ACCESS_KEY}" >> /root/.aws/credentials']
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-secret
+              key: aws_access_key_id
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-secret
+              key: aws_secret_access_key
+        volumeMounts:
+        - name: aws-credentials-volume
+          mountPath: /root/.aws/
       containers:
       - name: udagram-backend-feed
         image: skandaprasad98/udagram-api-feed
@@ -46,16 +64,6 @@ spec:
             configMapKeyRef:
               name: env-configmap
               key: AWS_REGION
-        - name: AWS_ACCESS_KEY_ID
-          valueFrom:
-            secretKeyRef:
-              name: aws-secret
-              key: aws_access_key_id
-        - name: AWS_SECRET_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              name: aws-secret
-              key: aws_secret_access_key
         - name: JWT_SECRET
           valueFrom:
             configMapKeyRef:
@@ -82,11 +90,9 @@ spec:
               name: env-secret
               key: POSTGRES_USERNAME
         volumeMounts:
-        - name: aws-secret
+        - name: aws-credentials-volume
           mountPath: "/root/.aws/"
-          readOnly: true
       restartPolicy: Always
       volumes:
-      - name: aws-secret
-        secret:
-          secretName: aws-secret
+      - name: aws-credentials-volume
+        emptyDir: {}

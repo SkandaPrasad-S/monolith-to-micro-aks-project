@@ -17,7 +17,6 @@ import {V0_USER_MODELS} from './controllers/v0/model.index';
 
   const app = express();
   const port = process.env.PORT || 8080;
-
   app.use(bodyParser.json());
 
   // We set the CORS origin to * so that we don't need to

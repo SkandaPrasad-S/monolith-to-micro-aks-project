@@ -30,7 +30,7 @@ plugins/ios.json
 $RECYCLE.BIN/
 postgres_dev/
 logfile
-
+set_env.bat
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
@@ -40,3 +40,7 @@ venv/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+configs/k8s/aws-secret.yaml
+configs/k8s/env-configmap.yaml
+configs/k8s/env-secret.yaml
+set_env.sh
